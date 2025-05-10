@@ -1,0 +1,27 @@
+.shopping-cart {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 8rem;
+  height: 3.125rem;
+  gap: 0.1rem;
+  transition: 0.25s ease-out;
+
+  p {
+    font-weight: 500;
+  }
+
+  .quantity {
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+  }
+
+  .text-cart {
+    margin-left: 0.7rem;
+  }
+}
+
+.shopping-cart:hover {
+  color: var(--color-secondary);
+  transform: scale(1.055);
+}

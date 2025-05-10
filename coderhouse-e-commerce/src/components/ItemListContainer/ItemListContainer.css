@@ -1,0 +1,25 @@
+.container {
+  margin-inline: 10rem;
+  margin-top: 5rem;
+}
+
+.home {
+  display: flex;
+  justify-content: space-between;
+  height: 32rem;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  font-size: 2rem;
+  justify-content: center;
+  padding-left: 1rem;
+}
+
+.photo-info {
+  img {
+    height: 32rem;
+    border-radius: 1rem;
+  }
+}
