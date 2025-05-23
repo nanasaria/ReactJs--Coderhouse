@@ -354,4 +354,52 @@ comunicação entre diferentes aplicações. As APIs facilitam
 que uma aplicação acesse funções ou dados específicos de 
 outra sem a necessidade de conhecer sua implementação 
 interna, promovendo uma integração eficiente e estruturada.
+
+Navegação e roteamento
+Benefícios de navegação:
+1. Gestão do Histórico de Navegação: Permite ao usuário 
+controlar as ações de avançar e retroceder, gerenciando o
+percurso dentro do app.
+
+2. Acesso Otimizado a Seções Chave: Estruturando corretamente
+as rotas, os crawlers e navegadores podem entender a 
+arquitetura da aplicação, melhorando o acesso e a visibilidade
+das diferentes seções, o que é essencial para SEO.
+
+3. Escalabilidade da Aplicação: Uma boa organização do sistema de
+rotas facilita a adição de novas funcionalidades sem comprometer
+a estrutura.
+
+A navegação no REACT geralmente é gerenciada com o uso de
+bibliotecas como react-router-dom que permite definir rotas
+que conectam componentes específicos a segmentos de URL.
+
+Rota dinâmica
+Permite exibir diferentes conteúdos com base nos parâmetros
+da URL.
+
+O Trecho de código de Exemplo:
+<BrowserRouter>
+  <NavBar />
+    <Routes>
+      <Route path="/item/:id" element={<ItemDetail />} />
+    </Routes>
+</BrowserRouter>
+
+Dentro do componente que será a página que recebe o parâmetro,
+importamos o useParams. Ex.:
+
+import { useParams } from "react-router-dom"
+
+const ItemDetail = () => {
+
+  ** Esse hook obtém o valor do parâmetro **
+  const { id } = useParams()
+
+  return(
+    <>
+      <h1>Detalhe do Item: {id}</h1>
+    </>
+  )  
+}
 */
