@@ -402,4 +402,51 @@ const ItemDetail = () => {
     </>
   )  
 }
+
+Componentes
+Conceitos fundamentais sobre eventos
+
+Os eventos no React são essenciais para gerenciar a 
+interação do usuário com a interface, permitindo que 
+as aplicações respondam de forma dinâmica a diferentes
+ações.
+
+Tipos de eventos
+Manuais: Requer uma interação direta do usuário, como clicar
+em um botão, inserir texto em um campo, etc. Esses eventos 
+são disparados por ações explícitas do usuário e são
+comuns na maioria das aplicações interativas.
+
+Automáticos: São acionados sem intervenção direta do usuário,
+como quando uma página detecta que passou um tempo sem 
+atividade e exibe um alerta.
+
+Uso de eventos do DOM no React
+O React permite permite trabalhar com eventos do DOM de forma
+simples utilizando eventos como onClick e onChange. Esses 
+eventos são gerenciados utilizando um modelo semelhante ao
+DOM padrão.
+
+Exemplo de onClick:
+
+return (
+  <button onClick={() => alert("Button clicked!")}> Click me</button>
+)
+
+Integração de Event Listeners em Componentes React
+É fundamental utilizar event listeners dentro de hooks.
+Isso garante que os listeners sejam registrados e 
+desregistrados corretamente quando o componente é 
+montado e desmontado.
+
+useEffect(() => {
+  const handleResize = () => console.log('Window resized');
+  window.addEventListener('resize', handleResize);
+
+  // Função de limpeza
+  return () => {
+    window.removeEventListener('resize', handleResize);
+  };
+}, []);
+
 */

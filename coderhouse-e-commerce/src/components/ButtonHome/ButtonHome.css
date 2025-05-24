@@ -1,4 +1,4 @@
-button {
+.button-to-shop {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -15,7 +15,7 @@ button {
   transition: 0.5s ease-in-out;
 }
 
-button:hover {
+.button-to-shop:hover {
   background-color: #e6e5e0;
   color: var(--color-primary);
   font-weight: 400;

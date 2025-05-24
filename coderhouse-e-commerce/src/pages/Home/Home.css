@@ -1,9 +1,6 @@
-.container-homepage {
-  margin-top: 5rem;
-}
-
 .home {
   display: flex;
+  gap: 2rem;
   justify-content: space-between;
   padding-inline: 10rem;
   height: 32rem;

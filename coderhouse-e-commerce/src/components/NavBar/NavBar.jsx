@@ -16,21 +16,26 @@ const NavBar = () => {
         <ul className="navbar">
           <li>
             <Link className="item-nav" to="/">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link className="item-nav" to="/colection/streetwear">
               Streetwear
             </Link>
           </li>
           <li>
-            <Link className="item-nav" to="/">
+            <Link className="item-nav" to="/colection/casual">
               Casual
             </Link>
           </li>
           <li>
-            <Link className="item-nav" to="/">
+            <Link className="item-nav" to="/colection/esporte">
               Esporte
             </Link>
           </li>
           <li>
-            <Link className="item-nav" to="/">
+            <Link className="item-nav" to="/colection/outlet">
               Outlet
             </Link>
           </li>

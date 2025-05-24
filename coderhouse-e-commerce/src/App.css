@@ -3,3 +3,9 @@
   --color-primary-transparent: #2829294b;
   --color-secondary: #d14070;
 }
+
+html {
+  .container {
+    margin-top: 5rem;
+  }
+}
