@@ -223,9 +223,9 @@ o ideal é utilizá-lo como key.
 
 const App = () => {
   const users = [
-    { id: 1, name: 'João' },
-    { id: 2, name: 'Ana' },
-    { id: 3, name: 'Carlos' },
+    { "id": 1, name: 'João' },
+    { "id": 2, name: 'Ana' },
+    { "id": 3, name: 'Carlos' },
   ];
 
   return (
@@ -250,8 +250,8 @@ const User = ({ name, status }) => (
 
 const App = () => {
   const users = [
-    { id: 1, name: 'João', status: 'Online' },
-    { id: 2, name: 'Ana', status: 'Offline' },
+    { "id": 1, name: 'João', status: 'Online' },
+    { "id": 2, name: 'Ana', status: 'Offline' },
   ];
 
   return (
@@ -449,4 +449,219 @@ useEffect(() => {
   };
 }, []);
 
+
+Criação e Uso de Contextos
+
+Context API - Compartilhar dados globalmente entre componentes
+
+Importação:
+import { createContext } from "react"
+const ThemeContext = createContext()
+export default ThemeContext;
+
+Esse ThemeContext virou um contexto.
+Em App.js temos que criar um provider.
+Então, importamos o contexto no App.js.
+
+Para criar um provider:
+retornamos o provider do contexto.
+Todo e qualquer componente que estiver contido no provider
+pode compartilhar os dados.
+O provider tem uma prop chamada value que são os valores
+disponíveis dentro do provider (Geralmente estados).
+
+<ThemeContext.Provider value={{isDarkMode, setIsDarkMode}}>
+<ComponenteB />
+</ThemeContext.Provider>
+
+Isso faz com que o componenteB possa acessar os estados
+isDarkMode e setIsDarkMode.
+Para usar o contexto temos que importar o hook UseContext e
+o próprio contexto.
+
+const ComponenteB = () => {
+
+  Aqui pegamos os estados do contexto e usamos o Hook que
+  recebe como argumento o contexto.
+  const {isDarkMode, setIsDarkMode} = useContext(ThemeContext)
+
+  return (
+    <div>
+      <p>Dark Mode is {isDarkMode ? "On" : "Off"} </p>
+      <button onClick={() => setIsDarkMode(!isDarkMode)}>
+        Toggle Dark Mode
+      </button>
+    </div>
+  )  
+}
+
+Implementação do Provider
+Um Context Provider atua como um "envoltório" ao redor dos
+componentes aos quais queremos fornecer acesso a determinados
+dados.
+Cada contexto criado possui um componente Provider incorporado.
+O Provider é responsável por "prover" os dados aos componentes
+ao seu redor.
+
+O Context Provider é crucial para gerenciar estados
+compartilhados em aplicações, especialmente quando os 
+dados precisam ser acessíveis a partir de múltiplos
+componentes distribuídos em diferentes partes da
+aplicação.
+
+Vantagens:
+- Elimina a necessidade de passar props manualmente através
+de múltiplos níveis de componentes.
+- Estrutura mais clara e organizada.
+- Escalabilidade.
+
+Contextos Dinâmicos
+
+Custom Provider
+É uma versão personalizada do Context Provider que não só 
+fornece dados estáticos, mas também permite gerenciar 
+estados dinâmicos e funções para modificar esses dados
+em tempo de execução.
+
+Os contextos dinâmicos são aqueles que podem ser modificados
+durante a execução da aplicação, geralmente através do uso
+de estados gerenciados com hooks como useState ou 
+useReducer.
+
+Um Custom Provider é basicamente um componente que envolve 
+o Context Provider e adiciona lógica condicional, como a 
+gestão de estados e funções que modificam esses estados.
+
+Como criar e implementar?
+1° Passo: Criar o contexto utilizando o createContext()
+2° Passo: Para implementar, criamos um componente que
+envolve o Provider do contexto e adicionamos os estados
+e funções necessárias para gerenciar o comportamento
+do contexto.
+
+jsx const CacheProvider = ({ children }) => { 
+  const [cache, setCache] = useState([]); // Funções para gerenciar o cache 
+  const addToCache = (item) => { 
+    if (!cache.some((obj) => obj.id === item.id)) { 
+    setCache([...cache, item]); 
+    } else { 
+     console.log("Erro: Item já adicionado no cache"); 
+    } 
+  }; 
+  
+  const isInCache = (id) => cache.some((obj) => obj.id === id); 
+  const cacheSize = cache.length; return ( 
+    <CacheContext.Provider value={{ cache, addToCache, isInCache, cacheSize }}>
+     {children} </CacheContext.Provider> 
+     ); 
+    };
+
+Nesse exemplo, CacheProvider gerencia um estado cache que 
+armazena uma lista. Tambéminclui funções e essas funções 
+são fornecidas através do value do Provider.
+
+Uso do Custom Provider
+Para usar o Custom Provider, basta envolver os componentes
+que precisam acessar os dados e funções.
+
+jsx const App = () => { 
+  return ( 
+    <CacheProvider> 
+      <ComponentA /> 
+      <ComponentB /> 
+    </CacheProvider> 
+  ); 
+};
+
+Vantagens dos Custom Providers
+- Gestão de Estados Dinâmicos.
+- Encapsulamento de Lógica.
+- Reutilização e Manutenção.
+
+Otimização de Contexto
+O uso do Context API pode causar problemas de desempenho
+se não for gerenciado corretamente.
+
+Uso do React.memo
+React.memo é um Higher-Order Component (HOC) que memoriza
+a saída de um componente, evitando renderizações desnecessárias
+se suas props não mudarem.  React.memo melhora o desempenho 
+e a eficiência na gestão dos recursos.
+
+
+Exemplo:
+
+const ListItem = React.memo(({ item }) => {
+  return (
+    <div>
+      <h1>{item.title}</h1>
+      <p>{item.description}</p>
+    </div>
+  );
+});
+
+Neste exemplo, ListItem só será renderizado se suas props
+mudarem.
+
+Divisão do Contexto
+Dividir o contexto em partes menores e mais específicas reduz
+o impacto das atualizações desnecessárias nos componentes
+que não precisam de certos dados.
+
+Exemplo:
+const UserContext = createContext();
+const ThemeContext = createContext();
+
+Ao dividir os contextos, os componentes são atualizados 
+apenas quando os dados que utilizam mudam, melhorando a 
+eficiência e evitando renderizações supérfluas.
+
+Evitar Mudanças Frequentes no Contexto
+Para otimizar o desempenho, é importante minimizar as 
+atualizações de estado dentro do contexto.
+
+Seleção e Memoização de Dados
+Use useMemo e useCallback para memorizar valores e funções
+que não mudam com frequência. Essas técnicas ajudam a
+reduzir renderizações custosas ao evitar o recálculo de
+dados desnecessários. Por exemplo, useMemo só recalcula um 
+valor quando suas dependências mudam, o que otimiza o 
+desempenho e melhora a experiência do usuário.
+
+Exemplo:
+const memoizedValue = useMemo(() => 
+  computeExpensiveValue(a, b), [a, b]);
+
+Este exemplo mostra como useMemo otimiza o desempenho ao 
+recalcular memoizedValue apenas quando a ou b mudam.
+
+Firebase
+Firebase é uma plataforma de serviços na nuvem desenvolvida 
+pelo Google, projetada para simplificar o desenvolvimento 
+de aplicativos ao fornecer uma gama completa de ferramentas 
+e serviços de back-end.
+
+Benefícios:
+- Simplificação do back-end.
+- Facilidade de uso.
+- Plano gratuito.
+- Escalabilidade.
+- Sem necessidade de manutenção.
+
+Principais arquiteturas disponíveis:
+- Serverless: O Firebase adota uma arquitetura serverless, 
+o que significa que não é necessário gerenciar servidores 
+dedicados. Todo o processamento é realizado na nuvem, e os 
+desenvolvedores pagam apenas pelos recursos que utilizam.
+
+- BaaS (Back-end as a Service): O Firebase se posiciona 
+como um BaaS, fornecendo serviços de back-end prontos para 
+uso, como bancos de dados em tempo real, Firestore para 
+armazenamento não relacional, hospedagem, funções na nuvem 
+e serviços de notificação. 
+
+- Microsserviços: O Firebase permite criar aplicativos 
+utilizando microsserviços, onde diferentes partes do 
+aplicativo estão desacopladas e se comunicam entre si 
+por meio de APIs.
 */

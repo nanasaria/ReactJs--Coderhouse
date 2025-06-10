@@ -1,7 +1,7 @@
 import "./Home.css";
 import ItemListContainer from "../../components/ItemDetailContainer/ItemDetailContainer.jsx";
 import photoHome from "../../assets/image/photoHome.jpeg";
-import ButtonHome from "../../components/ButtonHome/ButtonHome.jsx";
+import ButtonHome from "../../components/Buttons/ButtonHome/ButtonHome.jsx";
 import { Link } from "react-router-dom";
 import ItemDetailContainer from "../../components/ItemListContainer/ItemListContainer.jsx";
 

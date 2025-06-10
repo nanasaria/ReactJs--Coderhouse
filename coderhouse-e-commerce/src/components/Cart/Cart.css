@@ -1,0 +1,129 @@
+.container {
+  margin-inline: 10rem;
+  margin-top: 5rem;
+}
+
+.cart-preview {
+  display: flex;
+  grid-row: row;
+}
+
+.info-products {
+  margin-top: 4%;
+  width: 100%;
+  height: 100%;
+  overflow-y: auto;
+}
+
+.card-cart {
+  display: flex;
+  flex-direction: row;
+  width: 60%;
+  max-height: 180px;
+  border: 2px solid var(--color-secondary);
+  padding: 1%;
+  margin-bottom: 1rem;
+  position: relative;
+
+  img {
+    padding: 1%;
+    max-width: 150px;
+    object-fit: cover;
+  }
+}
+
+.title-product {
+  font-size: 1.45rem;
+  color: var(--color-primary);
+  width: 100%;
+  padding-left: 5%;
+}
+
+.text-card {
+  display: flex;
+  flex-direction: column;
+}
+
+.price-product {
+  font-size: 1.3rem;
+}
+
+.informations-product {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  align-items: center;
+  padding-top: 10%;
+  padding: 2%;
+
+  .quantity-product {
+    color: var(--color-primary-transparent);
+    font-size: 1.1rem;
+  }
+
+  .deleteItem {
+    position: absolute;
+    right: 0;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+  }
+}
+
+.info-price-cart {
+  margin-top: 4%;
+  display: flex;
+  flex-direction: column;
+  justify-content: left;
+  align-items: center;
+  width: 40%;
+}
+
+.resume-price {
+  width: 100%;
+
+  h1 {
+    text-align: center;
+    font-size: 2rem;
+    border-bottom: 2px solid var(--color-secondary);
+  }
+
+  p {
+    text-align: right;
+    margin-top: 8rem;
+    font-size: 1.86rem;
+  }
+
+  button {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 3rem;
+    width: 100%;
+    padding: 5%;
+    font-size: 1.5rem;
+    font-weight: 500;
+    border: none;
+    background-color: var(--color-secondary);
+    color: var(--color-primary);
+    cursor: pointer;
+    transition: 0.5s ease-in-out;
+  }
+
+  button:hover {
+    color: var(--color-secondary);
+    background-color: transparent;
+    font-weight: 500;
+  }
+}
+
+.cartEmpty {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10%;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}

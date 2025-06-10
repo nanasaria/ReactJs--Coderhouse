@@ -25,3 +25,9 @@
   color: var(--color-secondary);
   transform: scale(1.055);
 }
+
+.btn-cartWidget {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

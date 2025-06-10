@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ItemListContainer.css";
-import itemsStock from "../data/itemsStock.json";
-import Filter from "../Filter/Filter";
+import Filter from "./Filter/Filter";
+import getProducts from "../../services/getProducts";
 
 const ItemListContainer = () => {
   const { category } = useParams();
@@ -10,20 +10,31 @@ const ItemListContainer = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    fetchData();
+  }, [category]);
+
+  const fetchData = async () => {
+    const data = await getProducts();
+    const items = [];
+
+    data.forEach((doc) => {
+      items.push(doc.data());
+    });
+
     if (category) {
-      const productsWithCategory = itemsStock.filter(
+      const productsWithCategory = items.filter(
         (product) => product.categoria === category
       );
 
       if (category === "outlet") {
-        const productOutlet = itemsStock.filter((product) => product.outlet);
+        const productOutlet = items.filter((product) => product.outlet);
         return setProducts(productOutlet);
       }
 
       return setProducts(productsWithCategory);
     }
-    setProducts(itemsStock);
-  }, [category]);
+    setProducts(items);
+  };
 
   const viewOneItem = (id) => {
     navigate(`/item/${id}`);
