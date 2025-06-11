@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import "./ItemDetailContainer.css";
-import getProducts from "../../services/getProducts";
+import getProducts from "../../services/products/getProducts";
 import ItemCount from "./ItemCount/ItemCount";
 import ButtonBack from "../Buttons/ButtonBack/ButtonBack";
 

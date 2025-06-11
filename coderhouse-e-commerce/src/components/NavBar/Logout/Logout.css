@@ -1,0 +1,14 @@
+.div-logout {
+  transition: 0.25s ease-out;
+}
+
+.btn-logout {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  color: var(--color-secondary);
+  transform: scale(1.055);
+}

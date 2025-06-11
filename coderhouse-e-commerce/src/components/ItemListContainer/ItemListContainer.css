@@ -2,7 +2,7 @@
   display: flex;
   flex-wrap: wrap;
   gap: 6rem;
-  transition: 0.7s ease-in-out;
+  transition: 1.4s ease-in;
   margin-bottom: 12rem;
   margin-top: 4rem;
 }

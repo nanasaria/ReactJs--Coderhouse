@@ -1,9 +1,9 @@
-import React from "react";
+import "./NotFound.css";
 
 const NotFound = () => {
   return (
     <div className="container">
-      <h1>Endereço não encontrado :( </h1>
+      <h1 className="messsage-notfound">Endereço não encontrado :( </h1>
     </div>
   );
 };

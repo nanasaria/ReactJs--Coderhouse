@@ -4,10 +4,13 @@
   font-family: "Roboto", sans-serif;
   font-weight: 400;
   height: 100vh;
-  max-width: 1300px;
+  width: 100vw;
   padding: 0;
   margin: 0;
   box-sizing: border-box;
+  --color-primary: #282929;
+  --color-primary-transparent: #2829294b;
+  --color-secondary: #d14070;
 }
 
 a {

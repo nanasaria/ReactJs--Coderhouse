@@ -17,7 +17,6 @@ const CartWidget = () => {
       <a className="shopping-cart">
         <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
         <p className="quantity">{totalQuantity}</p>
-        <p className="text-cart">Carrinho</p>
       </a>
     </button>
   );

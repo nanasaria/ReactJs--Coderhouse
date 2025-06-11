@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import "./ItemListContainer.css";
 import Filter from "./Filter/Filter";
-import getProducts from "../../services/getProducts";
+import getProducts from "../../services/products/getProducts";
 
 const ItemListContainer = () => {
   const { category } = useParams();

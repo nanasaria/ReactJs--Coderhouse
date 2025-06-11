@@ -1,11 +1,17 @@
 import "./ItemCount.css";
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../../context/CartContext/CartContext";
 
 const ItemCount = ({ item }) => {
   const [count, setCount] = useState(1);
   const [isVisible, setIsVisible] = useState(true);
   const { setProducts } = useContext(CartContext);
+  const navigate = useNavigate();
+
+  const viewCart = () => {
+    navigate(`/cart`);
+  };
 
   const updateItems = () => {
     const newProduct = {
@@ -15,6 +21,7 @@ const ItemCount = ({ item }) => {
 
     setIsVisible(!isVisible);
     setProducts((prevProducts) => [...prevProducts, newProduct]);
+    viewCart();
   };
 
   return (

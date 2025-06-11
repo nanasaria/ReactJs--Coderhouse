@@ -1,12 +1,22 @@
 import "./Cart.css";
 import { useContext, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
 import { CartContext } from "../../context/CartContext/CartContext";
+import { useAuth } from "../../context/LoginContext/LoginContext";
+import createPurchase from "../../services/purchase/createPurchase";
+import updateProducts from "../../services/products/updateProducts";
 import ButtonBack from "../Buttons/ButtonBack/ButtonBack";
 import DeleteIcon from "@mui/icons-material/Delete";
 import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
 
 const Cart = () => {
-  const { products, setProducts } = useContext(CartContext);
+  const { products, setProducts, setQuantity } = useContext(CartContext);
+  const { currentUser } = useAuth();
+  const navigate = useNavigate();
+
+  const viewPurchases = (id) => {
+    navigate(`/purchase/${id}`);
+  };
 
   const total = useMemo(() => {
     return products.reduce(
@@ -18,6 +28,34 @@ const Cart = () => {
   const deleteItem = (id) => {
     const newProducts = products.filter((product) => product.id !== id);
     setProducts(newProducts);
+  };
+
+  const clearProductsCart = () => {
+    setProducts([]);
+    setQuantity(0);
+  };
+
+  const updateProduct = async () => {
+    const newProducts = products.map(({ id, quantidade, quantityCart }) => {
+      const newQuantity = Math.abs(quantidade - quantityCart);
+      return { id, newQuantity };
+    });
+
+    newProducts.forEach(async (product) => {
+      await updateProducts(String(product.id), product.newQuantity);
+    });
+  };
+
+  const finalizePurchase = async () => {
+    try {
+      const purchase = await createPurchase(currentUser.uid, products, total);
+      updateProduct();
+      clearProductsCart();
+      viewPurchases(purchase.id);
+      return purchase;
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -46,7 +84,10 @@ const Cart = () => {
                   className="deleteItem"
                   onClick={() => deleteItem(product.id)}
                 >
-                  <DeleteIcon fontSize="large"></DeleteIcon>
+                  <DeleteIcon
+                    style={{ color: "#d14070" }}
+                    fontSize="large"
+                  ></DeleteIcon>
                 </button>
               </div>
             </div>
@@ -60,7 +101,7 @@ const Cart = () => {
           <p>
             Total: <b>{total}</b> R$
           </p>
-          <button>
+          <button onClick={finalizePurchase}>
             Finalizar Pedido
             <ShoppingCartOutlinedIcon fontSize="medium"></ShoppingCartOutlinedIcon>
           </button>

@@ -1,11 +1,29 @@
-:root {
-  --color-primary: #282929;
-  --color-primary-transparent: #2829294b;
-  --color-secondary: #d14070;
-}
-
 html {
   .container {
     margin-top: 5rem;
+  }
+
+  h1,
+  h2,
+  h3 {
+    letter-spacing: 3px;
+  }
+}
+
+.loading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 50%;
+}
+
+@media screen and (max-width: 1300px) {
+  body {
+    transform: scale(0.67);
+    transform-origin: top left;
+  }
+
+  .footer {
+    transform: scale(1) !important;
   }
 }

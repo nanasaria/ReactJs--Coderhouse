@@ -32,6 +32,17 @@
 - [Vite: Ferramenta de Build](#vite-ferramenta-de-build)
 - [Design Modular com Componentes](#design-modular-com-componentes)
 
+## Estrutura do Diretório
+
+```
+annotations-study/
+├── sugar-syntax/           # Exemplos de sugar syntax em JavaScript
+│   ├── index.html          # Página HTML básica para executar os exemplos
+│   └── main.js             # Exemplos de operadores de incremento e template strings
+├── annotations.js          # Anotações detalhadas sobre conceitos de React
+└── README.md               # Este arquivo
+```
+
 ## React Js: Visão Geral
 
 React Js é uma biblioteca JavaScript desenvolvida pela Meta, voltada para a construção de interfaces de usuário (UI) de forma eficiente e modular. Seu diferencial está na capacidade de estruturar a interface em pequenos blocos reutilizáveis chamados componentes.
@@ -84,6 +95,11 @@ Esta seção reúne conceitos e práticas modernas no desenvolvimento com JavaSc
 ### Sugar Syntax
 
 Refere-se a recursos de sintaxe que tornam o código mais conciso e fácil de entender, como operadores de incremento ou spread operators.
+
+**Exemplos disponíveis em:** [sugar-syntax/main.js](./sugar-syntax/main.js)
+- Operadores de incremento: `i++`
+- Template strings: `` `This is ${condition ? "correct" : "incorrect"}` ``
+- Operador ternário: `condition ? "correct" : "incorrect"`
 
 ### Polyfills e Retrocompatibilidade
 
